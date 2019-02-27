@@ -15,6 +15,13 @@ jobs:
       - run:
           working_directory: ~/project/functions
           command: yarn install
+      # Install all needed dependencies from package.json
+      - run:
+          working_directory: ~/project/functions
+          command: yarn install -d firebase-tools
+      - run:
+          working_directory: ~/project/functions
+          command: yarn deploy
       # Save the cache including node_modules folder
       - save_cache:
           paths:
