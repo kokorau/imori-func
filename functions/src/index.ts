@@ -12,8 +12,13 @@ export const onAccountCreate = functions.auth.user().onCreate(user => {
 
 export const onEventCreate = functions.firestore.document('events/{eventId}').onCreate((snapshot, context) => {
     const userId = context.auth.uid
-    snapshot.ref.collection('staff').add({
-        userRef: db.collection(`users/${userId}`),
-        role: 'owner'
-    })
+    snapshot.ref.set({
+        createdAt: context.timestamp,
+        staff: [
+            {
+                userRef: db.collection(`users/${userId}`),
+                role: 'owner'
+            }
+        ]
+    }, { merge: true })
 })
