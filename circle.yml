@@ -8,8 +8,7 @@ jobs:
 #        - v1-dependencies-{{ checksum "package.json" }}
 #        # fallback to using the latest cache if no exact match is found
 #        - v1-dependencies-
-      - attach_workspace:
-        - at: ./functions
+      - run: cd ./functions
       - run: npm install
       - run:
           name: 'Install Dependecies'
@@ -18,6 +17,7 @@ jobs:
 #          paths:
 #            - node_modules
 #          key: v1-dependencies-{{ checksum "package.json" }}
+      - run: cd ../
       - run:
           name: 'Build Client Code(react-scripts によるビルド実行)'
           command: npm run deploy
