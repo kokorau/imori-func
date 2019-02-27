@@ -18,7 +18,7 @@ jobs:
       # Install all needed dependencies from package.json
       - run:
           working_directory: ~/project/functions
-          command: yarn install global firebase-tools
+          command: yarn add -d firebase-tools
       - run:
           working_directory: ~/project/functions
           command: yarn deploy
